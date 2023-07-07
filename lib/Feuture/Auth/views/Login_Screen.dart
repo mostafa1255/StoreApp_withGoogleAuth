@@ -115,7 +115,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                           CustomAuthGoogleFacebook(
                               facebookonPressed: () {
-                               // authcubit.deleteAccount();
+                                // authcubit.deleteAccount();
                               },
                               googleonPressed: () async {
                                 await authcubit.signInWithGoogle();
