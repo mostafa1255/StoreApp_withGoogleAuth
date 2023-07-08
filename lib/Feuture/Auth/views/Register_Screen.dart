@@ -41,12 +41,12 @@ class RegisterScreen extends StatelessWidget {
             ));
             Get.to(LoginScreen());
           } else if (state is googleSignFaliure) {
-            Get.showSnackbar(const GetSnackBar(
+            Get.showSnackbar(GetSnackBar(
               title: "Faliure",
-              message: "Please try again",
-              duration: Duration(seconds: 3),
+              message: state.errmessage,
+              duration: const Duration(seconds: 3),
               backgroundColor: Colors.red,
-              icon: Icon(Icons.check, color: Colors.white),
+              icon: const Icon(Icons.check, color: Colors.white),
             ));
           } else if (state is AuthSignFaliure) {
             Get.showSnackbar(GetSnackBar(

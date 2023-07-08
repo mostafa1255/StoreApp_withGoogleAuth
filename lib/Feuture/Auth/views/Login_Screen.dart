@@ -38,6 +38,23 @@ class LoginScreen extends StatelessWidget {
               backgroundColor: Colors.red,
               icon: const Icon(Icons.close, color: Colors.white),
             ));
+          } else if (state is googleSignSucsess) {
+            Get.showSnackbar(const GetSnackBar(
+              title: "Sucsess",
+              message: "Create Email Sucsessfull",
+              duration: Duration(seconds: 3),
+              backgroundColor: Colors.green,
+              icon: Icon(Icons.check, color: Colors.white),
+            ));
+            Get.to(LoginScreen());
+          } else if (state is googleSignFaliure) {
+            Get.showSnackbar(GetSnackBar(
+              title: "Faliure",
+              message: state.errmessage,
+              duration: Duration(seconds: 3),
+              backgroundColor: Colors.red,
+              icon: Icon(Icons.check, color: Colors.white),
+            ));
           }
         },
         builder: (context, state) {
@@ -115,7 +132,8 @@ class LoginScreen extends StatelessWidget {
                           ),
                           CustomAuthGoogleFacebook(
                               facebookonPressed: () {
-                                // authcubit.deleteAccount();
+                                 authcubit.deleteAccount();
+                                //authcubit.signOut();
                               },
                               googleonPressed: () async {
                                 await authcubit.signInWithGoogle();

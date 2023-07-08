@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -35,6 +34,10 @@ class AuthCubit extends Cubit<AuthState> {
     } on FirebaseException catch (e) {
       emit(AuthLoginFaliure(errmessage: '${e.message}'));
     }
+  }
+
+  void signOut() async {
+    await FirebaseAuth.instance.signOut();
   }
 
   Future<UserCredential?> signInWithGoogle() async {
@@ -78,7 +81,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   void deleteAccount() async {
-    final userCredential = await FirebaseAuth.instance;
-    userCredential.currentUser!.delete();
+    final userCredential = FirebaseAuth.instance;
+    await userCredential.currentUser?.delete();
   }
 }
