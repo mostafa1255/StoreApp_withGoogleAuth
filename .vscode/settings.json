@@ -1,4 +1,5 @@
 {
     "git.ignoreLimitWarning": true,
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "cmake.sourceDirectory": "C:/Users/mostafa/Desktop/My_Project_flutter/store_app/build/windows/extracted/firebase_cpp_sdk"
 }

@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         home:
-            HomeScreen() //constant.userid == null ? RegisterScreen() : LoginScreen(),
+            LoginScreen() //constant.userid == null ? RegisterScreen() : LoginScreen(),
         );
   }
 }
