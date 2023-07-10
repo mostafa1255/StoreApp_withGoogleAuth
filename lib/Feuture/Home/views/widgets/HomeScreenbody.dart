@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/core/constant.dart';
 
+import 'bottomListViewwithSearch.dart';
 import 'customItemListview.dart';
 import 'customTabBarCategory.dart';
 
@@ -14,20 +16,21 @@ class HomeScreenbody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           customTabBarCategory(),
+          const customTabBarCategory(),
           customItemListview(
             deviceW: device.width * 0.47,
             deviceH: device.height * 0.37,
+            device: device,
+            enfo: true,
           ),
-          Row(
-            children: [
-              Text("Winter Coat"),
-              SizedBox(
-                width: device.width * 0.2,
-              ),
-              Text("80\$")
-            ],
-          )
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15),
+            child: Text(
+              "Recommended for You",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
+          bottomListViewwithSearch(device: device)
         ],
       ),
     );
