@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:store_app/Feuture/Home/views/widgets/HomeScreenbody.dart';
+import 'package:get/get.dart';
+import 'package:store_app/Feuture/views/Cart/cart_screen.dart';
+import 'package:store_app/Feuture/views/Home/views/widgets/HomeScreenbody.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,7 +13,9 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(CartScreen());
+              },
               icon: const FaIcon(
                 FontAwesomeIcons.cartShopping,
                 color: Colors.black,
