@@ -15,6 +15,9 @@ class bottomListViewwithSearch extends StatelessWidget {
     return Stack(
       children: [
         customItemListview(
+            Price: 12,
+            image: "",
+            title: "test",
             deviceH: device.height * 0.25,
             deviceW: device.width * 0.37,
             device: device,

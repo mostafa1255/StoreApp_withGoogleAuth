@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:store_app/Feuture/views/Cart/widgets/totalPricecart.dart';
 import 'package:store_app/Feuture/views/Home/views/home_screen.dart';
 import 'package:store_app/Feuture/views/Item_Info/views/Item_Info_Screen.dart';
+import 'CartItemListview.dart';
 
 class CartScreenBody extends StatelessWidget {
   const CartScreenBody({super.key});
@@ -46,57 +48,8 @@ class CartScreenBody extends StatelessWidget {
               child: Column(
                 children: [
                   Expanded(
-                    child: ListView.builder(
-                      itemCount: 15,
-                      physics: const BouncingScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 10),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(25.0),
-                                child: SizedBox(
-                                  width: device.width * 0.25,
-                                  height: device.height * 0.12,
-                                  child: Image.asset(
-                                    'assets/OIP.jpeg',
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: device.width * 0.06,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: device.height * 0.01,
-                                  ),
-                                  const Text(
-                                    "Focial Cleanser",
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  SizedBox(
-                                    height: device.height * 0.04,
-                                  ),
-                                  const Text(
-                                    "\$19.98",
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.bold),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                        );
-                      },
-                    ),
+                    child: CartItemListview(
+                        device: device, image: "assets/OIP.jpeg"),
                   ),
                 ],
               ),
@@ -104,31 +57,7 @@ class CartScreenBody extends StatelessWidget {
             SizedBox(
               height: device.height * 0.01,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text("Bag Total",
-                    style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                Row(
-                  children: [
-                    const Text(
-                      "\$45",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      width: device.width * 0.01,
-                    ),
-                    const Text(
-                      "USD",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.grey),
-                    )
-                  ],
-                )
-              ],
-            ),
+            totalPricecart(device: device),
             SizedBox(
               height: device.height * 0.068,
             ),
@@ -155,3 +84,4 @@ class CartScreenBody extends StatelessWidget {
     );
   }
 }
+

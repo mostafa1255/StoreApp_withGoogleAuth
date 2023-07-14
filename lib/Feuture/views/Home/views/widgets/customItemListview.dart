@@ -9,8 +9,13 @@ class customItemListview extends StatelessWidget {
     required this.deviceW,
     required this.device,
     required this.enfo,
+    required this.image,
+    required this.Price,
+    required this.title,
   });
-
+  final double Price;
+  final String image;
+  final String title;
   final double deviceH;
   final double deviceW;
   final Size device;
@@ -35,12 +40,16 @@ class customItemListview extends StatelessWidget {
                         horizontal: 12, vertical: 16),
                     child: Column(
                       children: [
-                        Container(
-                          width: deviceW,
-                          height: deviceH,
-                          decoration: BoxDecoration(
-                              color: Colors.grey,
-                              borderRadius: BorderRadius.circular(20)),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20.0),
+                          child: SizedBox(
+                            width: deviceW,
+                            height: deviceH,
+                            child: Image.asset(
+                              image,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
                         SizedBox(
                           height: device.height * 0.02,
@@ -49,8 +58,8 @@ class customItemListview extends StatelessWidget {
                             ? Row(
                                 children: [
                                   Text(
-                                    "Winter Coat",
-                                    style: TextStyle(
+                                    title,
+                                    style: const TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -58,15 +67,15 @@ class customItemListview extends StatelessWidget {
                                     width: device.width * 0.2,
                                   ),
                                   Text(
-                                    "\$80",
-                                    style: TextStyle(
+                                    "\$$Price",
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.grey,
                                         fontSize: 16),
                                   )
                                 ],
                               )
-                            : SizedBox(
+                            : const SizedBox(
                                 height: 0,
                               ),
                       ],
