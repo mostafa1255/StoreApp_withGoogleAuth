@@ -1,92 +1,105 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:store_app/Feuture/Product_Cubit/product_cubit.dart';
 import 'package:store_app/Feuture/views/Item_Info/views/Item_Info_Screen.dart';
 
 class customItemListview extends StatelessWidget {
-  const customItemListview({
+  customItemListview({
     super.key,
     required this.deviceH,
     required this.deviceW,
     required this.device,
     required this.enfo,
-    required this.image,
-    required this.Price,
-    required this.title,
   });
-  final double Price;
-  final String image;
-  final String title;
+
   final double deviceH;
   final double deviceW;
   final Size device;
   final bool enfo;
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Get.to(ItemInfoScreen()),
-      child: Row(
-        children: [
-          Expanded(
-            child: SizedBox(
-              width: deviceW,
-              height: deviceH * 1.24,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 5,
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12, vertical: 16),
-                    child: Column(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(20.0),
-                          child: SizedBox(
-                            width: deviceW,
-                            height: deviceH,
-                            child: Image.asset(
-                              image,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: device.height * 0.02,
-                        ),
-                        enfo == true
-                            ? Row(
-                                children: [
-                                  Text(
-                                    title,
-                                    style: const TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold),
+    return BlocBuilder<ProductCubit, ProductState>(
+      builder: (context, state) {
+        if (state is ProductSucsess) {
+          return GestureDetector(
+            onTap: () => Get.to(const ItemInfoScreen()),
+            child: Row(
+              children: [
+                Expanded(
+                  child: SizedBox(
+                    width: deviceW,
+                    height: deviceH * 1.24,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: state.Products.length,
+                      physics: const BouncingScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 16),
+                          child: Column(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(20.0),
+                                child: SizedBox(
+                                  width: deviceW,
+                                  height: deviceH,
+                                  child: Image.network(
+                                    state.Products[index].image,
+                                    fit: BoxFit.cover,
                                   ),
-                                  SizedBox(
-                                    width: device.width * 0.2,
-                                  ),
-                                  Text(
-                                    "\$$Price",
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.grey,
-                                        fontSize: 16),
-                                  )
-                                ],
-                              )
-                            : const SizedBox(
-                                height: 0,
+                                ),
                               ),
-                      ],
+                              SizedBox(
+                                height: device.height * 0.02,
+                              ),
+                              enfo == true
+                                  ? Row(
+                                      children: [
+                                        Text(
+                                          state.Products[index].id.toString(),
+                                          overflow: TextOverflow.fade,
+                                          style: const TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        SizedBox(
+                                          width: device.width * 0.2,
+                                        ),
+                                        Text(
+                                          "\$${state.Products[index].price.toDouble()}",
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.grey,
+                                              fontSize: 16),
+                                        )
+                                      ],
+                                    )
+                                  : const SizedBox(
+                                      height: 0,
+                                    ),
+                            ],
+                          ),
+                        );
+                      },
                     ),
-                  );
-                },
-              ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
+          );
+        } else if (state is ProductFaliure) {
+          return const Center(
+            child: Text("There is No data Now"),
+          );
+        } else {
+          return const Center(
+            child: Text("Mostafaaaaaa"),
+          );
+        }
+      },
     );
   }
 }

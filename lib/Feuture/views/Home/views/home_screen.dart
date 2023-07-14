@@ -11,55 +11,44 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ProductCubit, ProductState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
-      builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            actions: [
-              IconButton(
-                  onPressed: () {
-                    Get.to(CartScreen());
-                  },
-                  icon: const FaIcon(
-                    FontAwesomeIcons.cartShopping,
-                    color: Colors.black,
-                  ))
-            ],
-            backgroundColor: Colors.white,
-            elevation: 0,
-            leading: Builder(
-              builder: (context) => InkWell(
-                onTap: () {
-                  Scaffold.of(context).openDrawer();
-                },
-                child: const Icon(
-                  Icons.menu,
-                  color: Colors.black,
-                  size: 30.0,
-                ),
-              ),
+    return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.to(CartScreen());
+              },
+              icon: const FaIcon(
+                FontAwesomeIcons.cartShopping,
+                color: Colors.black,
+              ))
+        ],
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: Builder(
+          builder: (context) => InkWell(
+            onTap: () {
+              Scaffold.of(context).openDrawer();
+            },
+            child: const Icon(
+              Icons.menu,
+              color: Colors.black,
+              size: 30.0,
             ),
           ),
-          drawer: const Drawer(
-              backgroundColor: Colors.white24,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  UserAccountsDrawerHeader(
-                      accountName: Text("Mostafa"),
-                      accountEmail: Text("Mostafa@gmail.com"))
-                ],
-              )),
-          body: state is ProductLoading
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : HomeScreenbody(),
-        );
-      },
+        ),
+      ),
+      drawer: const Drawer(
+          backgroundColor: Colors.white24,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              UserAccountsDrawerHeader(
+                  accountName: Text("Mostafa"),
+                  accountEmail: Text("Mostafa@gmail.com"))
+            ],
+          )),
+      body: HomeScreenbody(),
     );
   }
 }

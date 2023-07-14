@@ -6,9 +6,10 @@ import '../../Product_Cubit/product_cubit.dart';
 class AllCategoryservice {
   ProductCubit? productCubit;
   Future<List<dynamic>> getAllCategoryservice() async {
-    http.Response? response = await productCubit?.get(
-        url: "https://fakestoreapi.com/products/categories");
-    if (response != null && response.statusCode == 200) {
+    http.Response response =
+        await Api().get(url: "https://fakestoreapi.com/products/categories");
+
+    if (response.statusCode == 200) {
       List<dynamic> data = jsonDecode(response.body);
       return data;
     } else {

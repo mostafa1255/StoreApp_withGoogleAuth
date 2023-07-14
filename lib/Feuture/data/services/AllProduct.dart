@@ -10,9 +10,9 @@ class allProductservice {
   // ignore: non_constant_identifier_names
   Future<List<productModel>> getProducts() async {
     http.Response? response =
-        await productCubit?.get(url: "https://fakestoreapi.com/products");
+        await Api().get(url: "https://fakestoreapi.com/products");
 
-    if (response != null && response.statusCode == 200) {
+    if (response.statusCode == 200) {
       List<dynamic> data = jsonDecode(response.body);
       List<productModel> productalist = [];
 

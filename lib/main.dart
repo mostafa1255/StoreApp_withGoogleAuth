@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_app/Feuture/Product_Cubit/product_cubit.dart';
+import 'package:store_app/Feuture/data/services/AllProduct.dart';
 import 'package:store_app/Feuture/views/Cart/cart_screen.dart';
 import 'package:store_app/Feuture/views/Home/views/home_screen.dart';
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => ProductCubit(),
+          create: (context) => ProductCubit(allProductservice())..AllProducts(),
         )
       ],
       child: const GetMaterialApp(

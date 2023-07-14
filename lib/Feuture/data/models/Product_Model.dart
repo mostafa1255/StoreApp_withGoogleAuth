@@ -17,7 +17,7 @@ class productModel {
     return productModel(
         id: jcondata['id'],
         title: jcondata['title'],
-        price: jcondata['price'],
+        price: jcondata['price'].toDouble(),
         description: jcondata['description'],
         image: jcondata['image'],
         rating: RatingModel.fromjcon(jcondata['rating']));
@@ -31,6 +31,7 @@ class RatingModel {
   RatingModel({required this.rate, required this.count});
 
   factory RatingModel.fromjcon(jcondata) {
-    return RatingModel(rate: jcondata['rate'], count: jcondata['count']);
+    return RatingModel(
+        rate: jcondata['rate'].toDouble(), count: jcondata['count']);
   }
 }
