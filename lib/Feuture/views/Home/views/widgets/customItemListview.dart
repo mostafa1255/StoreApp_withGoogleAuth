@@ -100,9 +100,7 @@ class customItemListview extends StatelessWidget {
             child: Text("There is No data Now"),
           );
         } else {
-          return const Center(
-            child: Text("Mostafaaaaaa"),
-          );
+          return const Center(child: CircularProgressIndicator());
         }
       },
     );

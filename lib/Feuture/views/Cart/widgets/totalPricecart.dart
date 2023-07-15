@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../Product_Cubit/product_cubit.dart';
 
 class totalPricecart extends StatelessWidget {
@@ -21,8 +20,8 @@ class totalPricecart extends StatelessWidget {
         Row(
           children: [
             SizedBox(
-              width: device.width * 0.5,
-              height: device.height * 0.06,
+              width: device.width * 0.2,
+              height: device.height * 0.03,
               child: Text(
                 "\$${BlocProvider.of<ProductCubit>(context).getPrice()}",
                 style:

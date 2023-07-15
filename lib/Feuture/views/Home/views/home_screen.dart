@@ -22,9 +22,13 @@ class HomeScreen extends StatelessWidget {
                   index: 0,
                 ));
               },
-              icon: const FaIcon(
+              icon: FaIcon(
                 FontAwesomeIcons.cartShopping,
-                color: Colors.black,
+                color:
+                    BlocProvider.of<ProductCubit>(context).GetCountItemCart() ==
+                            0
+                        ? Colors.black
+                        : Colors.green,
               ))
         ],
         backgroundColor: Colors.white,
@@ -52,7 +56,7 @@ class HomeScreen extends StatelessWidget {
                   accountEmail: Text("Mostafa@gmail.com"))
             ],
           )),
-      body: HomeScreenbody(),
+      body: const HomeScreenbody(),
     );
   }
 }

@@ -52,10 +52,14 @@ class ItemInfoScreenBody extends StatelessWidget {
                                 index: index,
                               ));
                             },
-                            icon: const FaIcon(
+                            icon: FaIcon(
                               FontAwesomeIcons.cartShopping,
-                              color: Colors.black,
-                            )),
+                              color: BlocProvider.of<ProductCubit>(context)
+                                          .GetCountItemCart() ==
+                                      0
+                                  ? Colors.black
+                                  : Colors.green,
+                            ))
                       ],
                     ),
                   ),
