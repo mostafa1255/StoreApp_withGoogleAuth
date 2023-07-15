@@ -22,7 +22,9 @@ class customItemInfo extends StatelessWidget {
       builder: (context, state) {
         if (state is ProductSucsess) {
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 22),
+            padding: EdgeInsets.symmetric(
+                horizontal: device.width * 0.04,
+                vertical: device.height * 0.025),
             child: Column(
               children: [
                 customitemrowinfo(

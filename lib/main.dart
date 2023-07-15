@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:store_app/Feuture/Auth/views/Login_Screen.dart';
 import 'package:store_app/Feuture/Auth/views/Register_Screen.dart';
 import 'package:store_app/Feuture/Catigory_Cubit/category_cubit.dart';
 import 'package:store_app/Feuture/Product_Cubit/product_cubit.dart';
@@ -10,10 +11,8 @@ import 'package:store_app/Feuture/data/services/AllGategory.dart';
 import 'package:store_app/Feuture/data/services/AllProduct.dart';
 import 'package:store_app/Feuture/views/Cart/cart_screen.dart';
 import 'package:store_app/Feuture/views/Home/views/home_screen.dart';
-
 import 'package:store_app/Feuture/views/Item_Info/views/Item_Info_Screen.dart';
 import 'package:store_app/core/constant.dart';
-
 import 'firebase_options.dart';
 
 void main() async {
@@ -43,10 +42,10 @@ class MyApp extends StatelessWidget {
               CategoryCubit(AllCategoryservice())..AllCategory(),
         )
       ],
-      child:  GetMaterialApp(
+      child: GetMaterialApp(
           debugShowCheckedModeBanner: false,
           home:
-              RegisterScreen() //constant.userid == null ? RegisterScreen() : LoginScreen(),
+              LoginScreen() //constant.userid == null ? RegisterScreen() : LoginScreen(),
           ),
     );
   }

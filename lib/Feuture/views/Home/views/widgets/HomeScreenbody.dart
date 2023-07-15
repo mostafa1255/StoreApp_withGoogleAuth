@@ -13,7 +13,8 @@ class HomeScreenbody extends StatelessWidget {
     product.getProducts();
     var device = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
+      padding:
+          EdgeInsets.symmetric(horizontal: device.width * 0.02, vertical: 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -24,9 +25,9 @@ class HomeScreenbody extends StatelessWidget {
             device: device,
             enfo: true,
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            child: Text(
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: device.width * 0.03),
+            child: const Text(
               "Recommended for You",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),

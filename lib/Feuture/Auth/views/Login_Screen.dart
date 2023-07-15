@@ -31,6 +31,7 @@ class LoginScreen extends StatelessWidget {
               backgroundColor: Colors.green,
               icon: Icon(Icons.check, color: Colors.white),
             ));
+            Get.to(HomeScreen());
           } else if (state is AuthLoginFaliure) {
             Get.showSnackbar(GetSnackBar(
               title: "Faliure",

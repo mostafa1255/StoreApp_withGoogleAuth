@@ -28,15 +28,16 @@ class customItemListview extends StatelessWidget {
               Expanded(
                 child: SizedBox(
                   width: deviceW,
-                  height: deviceH * 1.24,
+                  height: deviceH * 1.23,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: state.Products.length,
                     physics: const BouncingScrollPhysics(),
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 12, vertical: 16),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: deviceW * 0.05,
+                            vertical: deviceH * 0.05),
                         child: Column(
                           children: [
                             GestureDetector(
@@ -58,7 +59,7 @@ class customItemListview extends StatelessWidget {
                               ),
                             ),
                             SizedBox(
-                              height: device.height * 0.02,
+                              height: device.height * 0.01,
                             ),
                             enfo == true
                                 ? Row(

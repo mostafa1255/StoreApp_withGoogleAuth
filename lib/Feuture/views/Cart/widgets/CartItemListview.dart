@@ -22,7 +22,7 @@ class CartItemListview extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) {
               return Padding(
-                padding: const EdgeInsets.only(bottom: 10),
+                padding: EdgeInsets.only(bottom: device.height * 0.01),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -44,11 +44,11 @@ class CartItemListview extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          height: device.height * 0.01,
+                          height: device.height * 0.002,
                         ),
                         SizedBox(
                           width: device.width * 0.5,
-                          height: device.height * 0.05,
+                          height: device.height * 0.1,
                           child: Text(
                             state.Products[indexs].title.toString(),
                             overflow: TextOverflow.fade,
@@ -57,7 +57,7 @@ class CartItemListview extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: device.height * 0.01,
+                          height: device.height * 0.002,
                         ),
                         Text(
                           "\$${state.Products[indexs].price}",

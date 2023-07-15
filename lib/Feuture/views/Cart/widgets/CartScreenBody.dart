@@ -9,7 +9,8 @@ import 'package:store_app/Feuture/views/Item_Info/views/Item_Info_Screen.dart';
 import 'CartItemListview.dart';
 
 class CartScreenBody extends StatelessWidget {
-  const CartScreenBody({super.key, required this.index, required this.countitem});
+  const CartScreenBody(
+      {super.key, required this.index, required this.countitem});
   final int index;
   final int countitem;
   @override
@@ -20,7 +21,7 @@ class CartScreenBody extends StatelessWidget {
         if (state is ProductSucsess) {
           return SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.symmetric(horizontal: device.width * 0.04),
               child: Column(
                 children: [
                   Row(
@@ -53,7 +54,7 @@ class CartScreenBody extends StatelessWidget {
                   ),
                   SizedBox(
                     width: device.width,
-                    height: device.height * 0.65,
+                    height: device.height * 0.62,
                     child: Column(
                       children: [
                         Expanded(

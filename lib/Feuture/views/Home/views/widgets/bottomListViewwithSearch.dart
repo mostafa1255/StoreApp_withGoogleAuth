@@ -15,12 +15,12 @@ class bottomListViewwithSearch extends StatelessWidget {
     return Stack(
       children: [
         customItemListview(
-            deviceH: device.height * 0.25,
+            deviceH: device.height * 0.24,
             deviceW: device.width * 0.37,
             device: device,
             enfo: false),
         Positioned(
-          bottom: 16,
+          bottom: device.height * 0.03,
           right: (device.width - device.width * 0.155) / 2,
           child: Container(
             height: device.height * 0.068,
