@@ -6,6 +6,7 @@ part 'product_state.dart';
 
 class ProductCubit extends Cubit<ProductState> {
   int count = 0;
+  double price = 0;
   ProductCubit(this.allProduct) : super(ProductInitial());
   allProductservice allProduct;
   Future<void> AllProducts() async {
@@ -26,5 +27,13 @@ class ProductCubit extends Cubit<ProductState> {
 
   int GetCountItemCart() {
     return count;
+  }
+
+  void setPrice({required double Price}) {
+    price = Price + price;
+  }
+
+  double getPrice() {
+    return price;
   }
 }

@@ -85,6 +85,8 @@ class customItemInfo extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
+                    BlocProvider.of<ProductCubit>(context)
+                        .setPrice(Price: state.Products[index].price);
                     BlocProvider.of<ProductCubit>(context).CountItemCart();
                     Get.to(CartScreen(
                       countitem: BlocProvider.of<ProductCubit>(context)

@@ -48,7 +48,7 @@ class CartItemListview extends StatelessWidget {
                         ),
                         SizedBox(
                           width: device.width * 0.5,
-                          height: device.height * 0.08,
+                          height: device.height * 0.05,
                           child: Text(
                             state.Products[indexs].title.toString(),
                             overflow: TextOverflow.fade,
@@ -57,7 +57,7 @@ class CartItemListview extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: device.height * 0.04,
+                          height: device.height * 0.01,
                         ),
                         Text(
                           "\$${state.Products[indexs].price}",

@@ -9,6 +9,7 @@ import 'package:store_app/Feuture/Auth/views/Register_Screen.dart';
 import 'package:store_app/Feuture/Auth/views/widgets/CustomAuthGoogleFacebook.dart';
 import 'package:store_app/Feuture/Auth/views/widgets/CustomTextFormField.dart';
 import 'package:store_app/Feuture/Auth/views/widgets/CustomnavigateAuth.dart';
+import 'package:store_app/Feuture/views/Home/views/home_screen.dart';
 import 'package:store_app/core/App_Color.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -41,12 +42,12 @@ class LoginScreen extends StatelessWidget {
           } else if (state is googleSignSucsess) {
             Get.showSnackbar(const GetSnackBar(
               title: "Sucsess",
-              message: "Create Email Sucsessfull",
+              message: "Login Email Sucsessfull",
               duration: Duration(seconds: 3),
               backgroundColor: Colors.green,
               icon: Icon(Icons.check, color: Colors.white),
             ));
-            Get.to(LoginScreen());
+            Get.to(HomeScreen());
           } else if (state is googleSignFaliure) {
             Get.showSnackbar(GetSnackBar(
               title: "Faliure",
@@ -132,7 +133,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                           CustomAuthGoogleFacebook(
                               facebookonPressed: () {
-                                 authcubit.deleteAccount();
+                                authcubit.deleteAccount();
                                 //authcubit.signOut();
                               },
                               googleonPressed: () async {
