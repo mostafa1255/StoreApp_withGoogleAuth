@@ -16,7 +16,11 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                Get.to(CartScreen());
+                Get.to(CartScreen(
+                  countitem:
+                      BlocProvider.of<ProductCubit>(context).GetCountItemCart(),
+                  index: 0,
+                ));
               },
               icon: const FaIcon(
                 FontAwesomeIcons.cartShopping,

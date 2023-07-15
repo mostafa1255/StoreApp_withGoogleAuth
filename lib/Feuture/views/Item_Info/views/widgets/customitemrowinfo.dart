@@ -15,10 +15,15 @@ class customitemrowinfo extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          info,
-          style: const TextStyle(
-              color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 24),
+        SizedBox(
+          width: device.width * 0.8,
+          height: device.height * 0.043,
+          child: Text(
+            info,
+            overflow: TextOverflow.fade,
+            style: const TextStyle(
+                color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 24),
+          ),
         ),
         Container(
           width: device.width * 0.06,

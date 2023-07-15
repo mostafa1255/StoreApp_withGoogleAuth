@@ -23,25 +23,29 @@ class customItemListview extends StatelessWidget {
     return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, state) {
         if (state is ProductSucsess) {
-          return GestureDetector(
-            onTap: () => Get.to(const ItemInfoScreen()),
-            child: Row(
-              children: [
-                Expanded(
-                  child: SizedBox(
-                    width: deviceW,
-                    height: deviceH * 1.24,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: state.Products.length,
-                      physics: const BouncingScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 16),
-                          child: Column(
-                            children: [
-                              ClipRRect(
+          return Row(
+            children: [
+              Expanded(
+                child: SizedBox(
+                  width: deviceW,
+                  height: deviceH * 1.24,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: state.Products.length,
+                    physics: const BouncingScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 16),
+                        child: Column(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Get.to(ItemInfoScreen(
+                                  index: index,
+                                ));
+                              },
+                              child: ClipRRect(
                                 borderRadius: BorderRadius.circular(20.0),
                                 child: SizedBox(
                                   width: deviceW,
@@ -52,43 +56,43 @@ class customItemListview extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: device.height * 0.02,
-                              ),
-                              enfo == true
-                                  ? Row(
-                                      children: [
-                                        Text(
-                                          state.Products[index].id.toString(),
-                                          overflow: TextOverflow.fade,
-                                          style: const TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        SizedBox(
-                                          width: device.width * 0.2,
-                                        ),
-                                        Text(
-                                          "\$${state.Products[index].price.toDouble()}",
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.grey,
-                                              fontSize: 16),
-                                        )
-                                      ],
-                                    )
-                                  : const SizedBox(
-                                      height: 0,
-                                    ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
+                            ),
+                            SizedBox(
+                              height: device.height * 0.02,
+                            ),
+                            enfo == true
+                                ? Row(
+                                    children: [
+                                      Text(
+                                        state.Products[index].id.toString(),
+                                        overflow: TextOverflow.fade,
+                                        style: const TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(
+                                        width: device.width * 0.2,
+                                      ),
+                                      Text(
+                                        "\$${state.Products[index].price.toDouble()}",
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.grey,
+                                            fontSize: 16),
+                                      )
+                                    ],
+                                  )
+                                : const SizedBox(
+                                    height: 0,
+                                  ),
+                          ],
+                        ),
+                      );
+                    },
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           );
         } else if (state is ProductFaliure) {
           return const Center(

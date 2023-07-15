@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:store_app/Feuture/views/Item_Info/views/widgets/ItemInfoScreenBody.dart';
 
 class ItemInfoScreen extends StatelessWidget {
-  const ItemInfoScreen({super.key});
-
+  const ItemInfoScreen({super.key, required this.index});
+  final int index;
   @override
   Widget build(BuildContext context) {
     var device = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Colors.grey,
-      body: ItemInfoScreenBody(device: device),
+      body: ItemInfoScreenBody(
+        device: device,
+        index: index,
+      ),
     );
   }
 }
