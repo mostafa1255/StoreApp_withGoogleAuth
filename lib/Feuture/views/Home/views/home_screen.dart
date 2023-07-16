@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:store_app/Feuture/Auth/views/Login_Screen.dart';
 import 'package:store_app/Feuture/Product_Cubit/product_cubit.dart';
 import 'package:store_app/Feuture/views/Cart/cart_screen.dart';
 import 'package:store_app/Feuture/views/Home/views/widgets/HomeScreenbody.dart';
+import 'package:store_app/core/constant.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -46,14 +48,20 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      drawer: const Drawer(
-          backgroundColor: Colors.white24,
+      drawer: Drawer(
+          backgroundColor: Colors.white,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              UserAccountsDrawerHeader(
+              const UserAccountsDrawerHeader(
                   accountName: Text("Mostafa"),
-                  accountEmail: Text("Mostafa@gmail.com"))
+                  accountEmail: Text("Mostafa@gmail.com")),
+              IconButton(
+                  onPressed: () {
+                    constant.userid = null;
+                    Get.to(LoginScreen());
+                  },
+                  icon: const Icon(Icons.logout))
             ],
           )),
       body: const HomeScreenbody(),

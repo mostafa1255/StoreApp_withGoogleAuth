@@ -3,6 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:store_app/Feuture/Auth/views/Login_Screen.dart';
+import 'package:store_app/Feuture/Cart_Product_Cubit/cart_product_cubit.dart';
 import 'package:store_app/Feuture/Catigory_Cubit/category_cubit.dart';
 import 'package:store_app/Feuture/Product_Cubit/product_cubit.dart';
 import 'package:store_app/Feuture/data/services/AllGategory.dart';
@@ -36,12 +38,15 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               CategoryCubit(AllCategoryservice())..AllCategory(),
+        ),
+        BlocProvider(
+          create: (context) => CartProductCubit(),
         )
       ],
       child: GetMaterialApp(
           debugShowCheckedModeBanner: false,
           home:
-              HomeScreen() //constant.userid == null ? RegisterScreen() : LoginScreen(),
+              LoginScreen() //constant.userid == null ? RegisterScreen() : LoginScreen(),
           ),
     );
   }

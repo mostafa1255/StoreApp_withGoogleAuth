@@ -7,6 +7,7 @@ import 'package:store_app/Feuture/Auth/views/Login_Screen.dart';
 import 'package:store_app/Feuture/Auth/views/widgets/CustomAuthGoogleFacebook.dart';
 import 'package:store_app/Feuture/Auth/views/widgets/CustomTextFormField.dart';
 import 'package:store_app/Feuture/Auth/views/widgets/CustomnavigateAuth.dart';
+import 'package:store_app/Feuture/views/Home/views/home_screen.dart';
 import 'package:store_app/core/App_Color.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -28,7 +29,7 @@ class RegisterScreen extends StatelessWidget {
               backgroundColor: Colors.green,
               icon: Icon(Icons.check, color: Colors.white),
             ));
-            Get.to(LoginScreen());
+            Get.to(HomeScreen());
 
             ///
           } else if (state is googleSignSucsess) {

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:store_app/Feuture/Cart_Product_Cubit/cart_product_cubit.dart';
 import 'package:store_app/Feuture/Product_Cubit/product_cubit.dart';
 import 'package:store_app/Feuture/views/Cart/cart_screen.dart';
-
+import 'package:store_app/core/constant.dart';
 import 'customSizes.dart';
 import 'customitemrowinfo.dart';
 
@@ -27,24 +28,27 @@ class customItemInfo extends StatelessWidget {
                 vertical: device.height * 0.025),
             child: Column(
               children: [
-                customitemrowinfo(
-                  device: device,
-                  info: state.Products[index].title.toString(),
-                  color: Colors.black,
+                SizedBox(
+                  child: customitemrowinfo(
+                    device: device,
+                    info: state.Products[index].title.toString(),
+                    color: Colors.black,
+                  ),
                 ),
                 SizedBox(
-                  height: device.height * 0.013,
+                  height: device.height * 0.006,
                 ),
                 customitemrowinfo(
                     device: device,
                     info: "\$${state.Products[index].price}",
                     color: Colors.yellow),
-                SizedBox(
-                  height: device.height * 0.02,
+                const SizedBox(
+                  height: 0,
                 ),
                 customitemrowinfo(
                   device: device,
-                  info: "Your Size",
+                  info:
+                      "Number of Item are Avaliable : ${state.Products[index].rating.count}",
                   color: Colors.purpleAccent,
                 ),
                 SizedBox(
@@ -71,6 +75,9 @@ class customItemInfo extends StatelessWidget {
                           width: device.width * 0.04,
                         ),
                         customSizes(device: device, size: "XL"),
+                        SizedBox(
+                          height: device.height * 0.05,
+                        )
                       ],
                     ),
                     Container(
@@ -86,7 +93,7 @@ class customItemInfo extends StatelessWidget {
                   height: device.height * 0.03,
                 ),
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async {
                     BlocProvider.of<ProductCubit>(context)
                         .setPrice(Price: state.Products[index].price);
                     BlocProvider.of<ProductCubit>(context).CountItemCart();
@@ -95,6 +102,14 @@ class customItemInfo extends StatelessWidget {
                           .GetCountItemCart(),
                       index: index,
                     ));
+                    await BlocProvider.of<CartProductCubit>(context)
+                        .sendCartProduct(
+                            image: state.Products[index].image.toString(),
+                            title: state.Products[index].title.toString(),
+                            price: state.Products[index].price.toString(),
+                            userid: constant.userid == null
+                                ? "null"
+                                : constant.userid.toString());
                   },
                   child: Container(
                     width: device.width * 0.9,

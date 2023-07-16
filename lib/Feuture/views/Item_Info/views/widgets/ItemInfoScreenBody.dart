@@ -33,8 +33,9 @@ class ItemInfoScreenBody extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12, vertical: 30),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: device.width * 0.02,
+                        vertical: device.height * 0.04),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -65,7 +66,7 @@ class ItemInfoScreenBody extends StatelessWidget {
                   ),
                   Container(
                     width: device.width,
-                    height: device.height * 0.38,
+                    height: device.height * 0.47,
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(30),

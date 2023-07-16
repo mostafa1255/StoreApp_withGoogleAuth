@@ -17,12 +17,12 @@ class customitemrowinfo extends StatelessWidget {
       children: [
         SizedBox(
           width: device.width * 0.8,
-          height: device.height * 0.043,
+          height: device.height * 0.07,
           child: Text(
             info,
-            overflow: TextOverflow.fade,
+            overflow: TextOverflow.clip,
             style: const TextStyle(
-                color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 24),
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 24),
           ),
         ),
         Container(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:store_app/Feuture/Product_Cubit/product_cubit.dart';
+import 'package:store_app/Feuture/views/Item_Info/views/Item_Info_Screen.dart';
 
 class CartItemListview extends StatelessWidget {
   const CartItemListview({
@@ -26,14 +28,19 @@ class CartItemListview extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(25.0),
-                      child: SizedBox(
-                        width: device.width * 0.25,
-                        height: device.height * 0.12,
-                        child: Image.network(
-                          state.Products[indexs].image.toString(),
-                          fit: BoxFit.cover,
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(ItemInfoScreen(index: indexs));
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(25.0),
+                        child: SizedBox(
+                          width: device.width * 0.25,
+                          height: device.height * 0.12,
+                          child: Image.network(
+                            state.Products[indexs].image.toString(),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
