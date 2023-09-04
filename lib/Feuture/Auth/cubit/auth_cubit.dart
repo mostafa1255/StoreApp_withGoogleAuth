@@ -8,7 +8,7 @@ part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
-
+  final auth = FirebaseAuth.instance;
   void Register({required String email, required String password}) async {
     emit(LoadingSate());
     try {
@@ -20,6 +20,14 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  Future<void> verifyEmail() async {
+    try {
+      auth.currentUser!.sendEmailVerification();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   void Login({required String email, required String password}) async {
     emit(LoadingSate());
     try {
@@ -27,9 +35,12 @@ class AuthCubit extends Cubit<AuthState> {
           .signInWithEmailAndPassword(email: email, password: password);
 
       if (userCredential.user?.uid != null) {
+        print("in Auth Cubit" + userCredential.user!.uid);
         final sharedPref = await SharedPreferences.getInstance();
         await sharedPref.setString('userId', userCredential.user!.uid);
         emit(AuthLoginSucsess());
+      } else {
+        print("in Auth Cubit  UID is Null");
       }
     } on FirebaseException catch (e) {
       emit(AuthLoginFaliure(errmessage: '${e.message}'));
@@ -83,5 +94,19 @@ class AuthCubit extends Cubit<AuthState> {
   void deleteAccount() async {
     final userCredential = FirebaseAuth.instance;
     await userCredential.currentUser?.delete();
+  }
+
+  //
+  Future<void> resetPassword({required String email}) async {
+    try {
+      if (email != "") {
+        await auth.sendPasswordResetEmail(email: email.toString());
+        print("Reset sucsess");
+        // emit(ResetPasswordsucsess());
+      }
+    } on Exception catch (e) {
+      print("Reset faliure${e.toString()}");
+      //  emit(ResetPasswordFaliure(errmessage: e.toString()));
+    }
   }
 }
