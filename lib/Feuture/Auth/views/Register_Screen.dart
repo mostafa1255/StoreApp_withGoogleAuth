@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -29,8 +30,7 @@ class RegisterScreen extends StatelessWidget {
               backgroundColor: Colors.green,
               icon: Icon(Icons.check, color: Colors.white),
             ));
-            Get.to(HomeScreen());
-
+            Get.to(LoginScreen());
             ///
           } else if (state is googleSignSucsess) {
             Get.showSnackbar(const GetSnackBar(
