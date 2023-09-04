@@ -62,7 +62,7 @@ class CartScreenBody extends StatelessWidget {
                     child: Column(
                       children: [
                         Expanded(
-                          child: CartItemListview(
+    /*catItem*/                       child: CartItemListview(
                             countitem: countitem,
                             device: device,
                             indexs: index,

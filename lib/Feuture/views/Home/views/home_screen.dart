@@ -13,6 +13,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(constant.userid);
     return Scaffold(
       appBar: AppBar(
         actions: [

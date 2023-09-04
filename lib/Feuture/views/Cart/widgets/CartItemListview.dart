@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:store_app/Feuture/Cart_Product_Cubit/cart_product_cubit.dart';
 import 'package:store_app/Feuture/Product_Cubit/product_cubit.dart';
 import 'package:store_app/Feuture/views/Item_Info/views/Item_Info_Screen.dart';
 
@@ -16,6 +17,7 @@ class CartItemListview extends StatelessWidget {
   final int countitem;
   @override
   Widget build(BuildContext context) {
+    var cartCubit= BlocProvider.of<CartProductCubit>(context);
     return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, state) {
         if (state is ProductSucsess) {

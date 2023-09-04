@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -18,12 +19,13 @@ class LoginScreen extends StatelessWidget {
   final passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance;
     var device = MediaQuery.of(context).size;
     return BlocProvider(
       create: (context) => AuthCubit(),
       child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
-          if (state is AuthLoginSucsess) {
+          if (state is AuthLoginSucsess && user.currentUser!.emailVerified) {
             Get.showSnackbar(const GetSnackBar(
               title: "Sucsess",
               message: "Loigin Sucsessfull",
@@ -31,7 +33,18 @@ class LoginScreen extends StatelessWidget {
               backgroundColor: Colors.green,
               icon: Icon(Icons.check, color: Colors.white),
             ));
-            Get.to(HomeScreen());
+            Get.to(const HomeScreen());
+          } else if (state is AuthLoginSucsess &&
+              user.currentUser!.emailVerified == false) {
+            Get.showSnackbar(const GetSnackBar(
+              title: "Faliure",
+              message:
+                  "Please Click Your Link in your Email to Verify Your Account",
+              duration: Duration(seconds: 3),
+              backgroundColor: Colors.red,
+              icon: Icon(Icons.close, color: Colors.white),
+            ));
+            user.currentUser!.sendEmailVerification();
           } else if (state is AuthLoginFaliure) {
             Get.showSnackbar(GetSnackBar(
               title: "Faliure",
@@ -48,14 +61,14 @@ class LoginScreen extends StatelessWidget {
               backgroundColor: Colors.green,
               icon: Icon(Icons.check, color: Colors.white),
             ));
-            Get.to(HomeScreen());
+            Get.to(const HomeScreen());
           } else if (state is googleSignFaliure) {
             Get.showSnackbar(GetSnackBar(
               title: "Faliure",
               message: state.errmessage,
-              duration: Duration(seconds: 3),
+              duration: const Duration(seconds: 3),
               backgroundColor: Colors.red,
-              icon: Icon(Icons.check, color: Colors.white),
+              icon: const Icon(Icons.check, color: Colors.white),
             ));
           }
         },
@@ -96,11 +109,19 @@ class LoginScreen extends StatelessWidget {
                               SizedBox(
                                 width: device.width * 0.6,
                               ),
-                              const Text(
-                                "Forgot Password?",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.grey),
+                              GestureDetector(
+                                onTap: () {
+                                  authcubit.resetPassword(
+                                      email: emailController.text);
+                                },
+                                child: Container(
+                                  child: const Text(
+                                    "Forgot Password?",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey),
+                                  ),
+                                ),
                               )
                             ],
                           ),
