@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -35,7 +36,9 @@ class AuthCubit extends Cubit<AuthState> {
           .signInWithEmailAndPassword(email: email, password: password);
 
       if (userCredential.user?.uid != null) {
-        print("in Auth Cubit" + userCredential.user!.uid);
+        if (kDebugMode) {
+          print("in Auth Cubit${userCredential.user!.uid}");
+        }
         final sharedPref = await SharedPreferences.getInstance();
         await sharedPref.setString('userId', userCredential.user!.uid);
         emit(AuthLoginSucsess());
@@ -48,7 +51,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   void signOut() async {
-    await FirebaseAuth.instance.signOut();
+    await auth.signOut();
   }
 
   Future<UserCredential?> signInWithGoogle() async {
@@ -73,8 +76,6 @@ class AuthCubit extends Cubit<AuthState> {
 
   ///
 
-  ///
-
   Future<UserCredential?> signInWithFacebook() async {
     emit(LoadingSate());
     try {
@@ -92,8 +93,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   void deleteAccount() async {
-    final userCredential = FirebaseAuth.instance;
-    await userCredential.currentUser?.delete();
+    await auth.currentUser?.delete();
   }
 
   //

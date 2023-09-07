@@ -12,6 +12,7 @@ import 'package:store_app/Feuture/Auth/views/widgets/CustomTextFormField.dart';
 import 'package:store_app/Feuture/Auth/views/widgets/CustomnavigateAuth.dart';
 import 'package:store_app/Feuture/views/Home/views/home_screen.dart';
 import 'package:store_app/core/App_Color.dart';
+import 'package:store_app/main.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -25,7 +26,8 @@ class LoginScreen extends StatelessWidget {
       create: (context) => AuthCubit(),
       child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
-          if (state is AuthLoginSucsess && user.currentUser!.emailVerified) {
+          if (state is AuthLoginSucsess && user.currentUser!.emailVerified ||
+              user.currentUser?.uid != null) {
             Get.showSnackbar(const GetSnackBar(
               title: "Sucsess",
               message: "Loigin Sucsessfull",
@@ -33,7 +35,7 @@ class LoginScreen extends StatelessWidget {
               backgroundColor: Colors.green,
               icon: Icon(Icons.check, color: Colors.white),
             ));
-            Get.to(const HomeScreen());
+            Get.to(const FirebaseMessage());
           } else if (state is AuthLoginSucsess &&
               user.currentUser!.emailVerified == false) {
             Get.showSnackbar(const GetSnackBar(
