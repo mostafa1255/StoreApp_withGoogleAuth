@@ -121,7 +121,7 @@ class _FirebaseMessageState extends State<FirebaseMessage> {
             'id': id,
             'status': 'done'
           },
-          'to': await FirebaseMessaging.instance.getToken(),
+          'to': "/topics/mostafa",
         },
       ),
     );
@@ -171,7 +171,19 @@ class _FirebaseMessageState extends State<FirebaseMessage> {
               onPressed: () {
                 sendNotify(title: "mostafa", body: "test notify", id: "1");
               },
-              child: Text("Send Notify"))
+              child: Text("Send Notify")),
+          ElevatedButton(
+              onPressed: () async {
+                // subscribe to topic on each app start-up
+                await FirebaseMessaging.instance.subscribeToTopic('mostafa');
+              },
+              child: const Text("subscribeToTopic")),
+          ElevatedButton(
+              onPressed: () async {
+                await FirebaseMessaging.instance
+                    .unsubscribeFromTopic('mostafa');
+              },
+              child: const Text("unsubscribeFromTopic"))
         ],
       ),
     );
